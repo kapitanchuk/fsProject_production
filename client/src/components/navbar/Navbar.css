@@ -1,0 +1,37 @@
+.navbar{
+    width:100%;
+    background: rgba(51, 24, 167, 0.514);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color:white;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.navbar__logo{
+    font-size: 20px;
+}
+
+.navbar__links{
+    display: flex;
+}
+
+.navbar *{
+    color:white;
+    text-decoration: none;
+}
+
+.navbar__authorization{
+    margin-right: 20px;
+    transition: all .2s linear;
+    
+}
+

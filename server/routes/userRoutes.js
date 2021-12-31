@@ -10,8 +10,9 @@ router.post('/registration',[
     check('password','4 or more characters').isLength({min:4})
 ],userController.registration)
 router.post('/authorization',userController.authorization)
-router.post('/logout',userController.logout)
+router.get('/logout',userController.logout)
 router.get('/refresh',userController.refresh)
+router.get('/getUsers',authMiddleware,userController.getAll)
 router.get('/auth',authMiddleware,userController.auth)
 
 export default router

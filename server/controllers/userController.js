@@ -7,7 +7,7 @@ dotenv.config()
 class userController {
     async registration(req, res, next) {
         try {
-            const user = await userService.login(req)
+            const user = await userService.regist(req)
 
             res.cookie('Refresh_token', user.refresh_token, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true })
             
@@ -38,10 +38,20 @@ class userController {
         }
     }
 
+    async getAll(req,res,next){
+        try {
+            const users = await userService.getUsers()
+            return res.json({users})
+        } catch (e) {
+            next(e)
+        }
+    }
+
     async logout(req, res, next) {
         try {
-
+            
             const { Refresh_token } = req.cookies
+            console.log(Refresh_token)
             await tokenService.deleteRefresh(Refresh_token)
             res.clearCookie('Refresh_token')
             return res.json({ message: 'logouted' })
@@ -53,9 +63,10 @@ class userController {
     async refresh(req, res, next) {
         try {
             const { Refresh_token } = req.cookies
-            await tokenService.refreshTokens(Refresh_token)
+            
+            const tokens = await tokenService.refreshTokens(Refresh_token)
 
-            return res.json('refreshed')
+            return res.json({tokens})
         } catch (e) {
             next(e)
         }
@@ -64,7 +75,7 @@ class userController {
     async auth(req,res,next){
         try{
             const user = req.user;
-            return res.json({user});
+            return res.status(200).json({user});
         }
         catch(e){
             next(e)

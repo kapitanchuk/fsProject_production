@@ -15,7 +15,7 @@ const App = () => {
 
     useEffect(()=>{
         dispatch(auth())
-    },[])//when page is first rendered or user changed
+    },[])//when page is first rendered 
 
     return (
         <Router>

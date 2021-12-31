@@ -9,7 +9,7 @@ export default class apiErrors{
     }
 
     static unAuthorized(){
-       return new apiErrors(403,'unauthorized') 
+       return new apiErrors(401,'unauthorized') 
     }
 
 
@@ -19,7 +19,7 @@ export default class apiErrors{
     }
 
     static InvalidToken(message){
-        return new apiErrors(401,message)
+        return new apiErrors(403,message)
     }
 }
 

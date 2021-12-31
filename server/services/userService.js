@@ -5,7 +5,7 @@ import { validationResult } from "express-validator"
 import bcrypt from 'bcrypt'
 
 class userService {
-    async login(req) {
+    async regist(req) {
         const errors = validationResult(req)
 
         if (!errors.isEmpty()) {
@@ -48,6 +48,16 @@ class userService {
         return {
             ...tokens,
             user:user
+        }
+    }
+
+    async getUsers(){
+        const users = await User.find()
+        if(!users){
+            throw apiErrors.BadRequest('Users are not found')
+        }
+        return {
+            users
         }
     }
 }

@@ -60,6 +60,11 @@ class userService {
             users
         }
     }
+
+    async findUser(req){
+        const user = await User.findOne({_id:req.payload})
+        return user
+    }
 }
 
 export default new userService() // вызывая new мы точно знаем, что будет создан новый объект

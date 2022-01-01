@@ -51,10 +51,10 @@ class userController {
         try {
             
             const { Refresh_token } = req.cookies
-            console.log(Refresh_token)
+            console.log("TOKEN FROM LOGOUT ",Refresh_token)
             await tokenService.deleteRefresh(Refresh_token)
             res.clearCookie('Refresh_token')
-            return res.json({ message: 'logouted' })
+            return res.json('done')
         } catch (e) {
             next(e)
         }
@@ -63,9 +63,8 @@ class userController {
     async refresh(req, res, next) {
         try {
             const { Refresh_token } = req.cookies
-            
             const tokens = await tokenService.refreshTokens(Refresh_token)
-
+            res.cookie('Refresh_token', tokens.tokens.refresh_token, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true })
             return res.json({tokens})
         } catch (e) {
             next(e)
@@ -74,8 +73,9 @@ class userController {
 
     async auth(req,res,next){
         try{
-            const user = req.user;
-            return res.status(200).json({user});
+            const user = await userService.findUser(req.user);
+
+            return res.json({user});
         }
         catch(e){
             next(e)

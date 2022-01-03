@@ -1,0 +1,27 @@
+@import '../scssComponents/container';
+@import url('https://fonts.googleapis.com/css2?family=Pushster&display=swap');
+$font: 'Pushster', cursive;
+
+.env-admin{
+    
+    @include container;
+
+    .navigation{
+        display: flex;
+        flex-direction: column;
+        margin:10px 10px;
+        font-family:$font;
+        .buttons{
+            margin-top:10px;
+            display: flex;
+            justify-content: flex-start;
+            
+            button{
+                margin: 0 5px;
+                padding: 5px 8px;
+                border-radius: 5px;
+            }
+        }
+    }
+    
+}

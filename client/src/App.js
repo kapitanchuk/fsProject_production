@@ -12,6 +12,7 @@ const App = () => {
 
     const dispatch = useDispatch()
     const isAuth = useSelector((state) => state.user.isAuth)
+    const isAdmin = useSelector(state=>state.user.currentUser.admin)
 
     useEffect(()=>{
         dispatch(auth())
@@ -20,7 +21,7 @@ const App = () => {
     return (
         <Router>
             <Navbar />
-            {routes(isAuth)}
+            {routes(isAuth,isAdmin)}
         </Router>
 
     )

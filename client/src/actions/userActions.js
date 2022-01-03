@@ -1,11 +1,11 @@
-import { $axios,$axiosAuth } from '../http(axios)/index.js'
+import { $api,$axios } from '../http(axios)/index.js'
 import { Logout, SetUser } from '../reducers/userReducer.js'
 
 
 export function registration(email, password) {
     return async dispatch => {
         try {
-            const response = await $axios.post(`/registration`, {
+            const response = await $api.post(`/user/registration`, {
                 email,
                 password
             })
@@ -24,7 +24,7 @@ export function registration(email, password) {
 export function authorization(email, password) {
     return async dispatch => {
         try {
-            const response = await $axios.post(`/authorization`, {
+            const response = await $api.post(`/user/authorization`, {
                 email,
                 password
             })
@@ -41,7 +41,7 @@ let response
 export function auth() {
     return async dispatch => {
         try {
-            response = await $axiosAuth.get('/auth')
+            response = await $axios.get('/user/auth')
             console.log('response from action ',response)
             //console.log(response)
             dispatch(SetUser(response.data.user))
@@ -66,7 +66,7 @@ export function auth() {
 export function logout() {
     return async dispatch => {
         try {
-            await $axios.get('/logout')
+            await $axios.get('/user/logout')
             localStorage.removeItem('Access_token')
             dispatch(Logout())
         }

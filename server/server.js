@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import mongoose from 'mongoose'
 import express from 'express'
+import familyRoutes from './routes/familyRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import cookieParser from 'cookie-parser'
 import errorsMiddleware from './middlewares/errors-middleware.js'
@@ -20,6 +21,7 @@ app.use(cors({
     origin:process.env.CLIENT_URL
 }))
 app.use('/api/user',userRoutes)
+app.use('/api/family',familyRoutes)
 app.use(errorsMiddleware)//если были ошибки, middleware принимает их после роутов
 
 async function StartApp(){

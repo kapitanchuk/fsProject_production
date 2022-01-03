@@ -1,0 +1,28 @@
+@import '../scssComponents/container';
+
+.create{
+    @include container;
+    &__inner{
+        margin: 0 auto;
+        text-align: center;
+        .options{
+            width: 700px;
+            background: rgba(113, 127, 190, 0.329);
+            border-radius: 10px;
+            & *{
+                margin:3px;
+            }
+
+            & :nth-child(n){
+                display: grid;
+                grid-template-columns: 150px 200px;
+                & :first-child{
+                    grid-column-start: 1;
+                }
+                & :nth-child(2){
+                    grid-column-start: 2;
+                }
+            }
+        }
+    }
+}

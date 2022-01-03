@@ -12,7 +12,7 @@ class tokenService {
             await Refresh.deleteOne({former_token})
             //console.log(former_token)
         }
-        const access_token = jwt.sign({ payload }, process.env.SECRET_ACCESS, { expiresIn: '5s' })
+        const access_token = jwt.sign({ payload }, process.env.SECRET_ACCESS, { expiresIn: '1h' })
         const refresh_token = jwt.sign({ payload }, process.env.SECRET_REFRESH, { expiresIn: '30d' })
         return {
             access_token,

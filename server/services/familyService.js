@@ -15,8 +15,19 @@ class familyService{
     }
 
     async getFamilies(req){
-        const families = await Family.find()
+        let language = req.query.language
+        let families
+        if(language){
+            language = 'German'
+            families = await Family.find({languages:language})
+            
+        }
+        else{
+            families = await Family.find()
+        }
+
         return families
+        
 
     }
 

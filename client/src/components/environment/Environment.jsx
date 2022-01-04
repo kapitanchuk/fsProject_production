@@ -12,7 +12,7 @@ const Environment = () => {
     useEffect(() => {
         dispatch(getFamilies())
         
-    }, []) //here should be options that user is choosing
+    }, []) //here should be options that user is choosing (maybe)
 
     return (
         <div className='env'>

@@ -18,6 +18,7 @@ const FamilyItem = ({ family }) => {
                 <div className='description'>Description: {family.description}</div>
 
                 <div className='living'>Living conditions: {family.living_conditions}</div>
+                {family.free===true ? <div className='free'>Free right now</div> : <div className='free_after'>Free after: {family.free}</div>}
             </div>
 
         </div>

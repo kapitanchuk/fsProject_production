@@ -18,7 +18,7 @@ const Environment = () => {
         <div className='env'>
             <div className='container'>
                 <div className='env__inner'>
-                    <div className='options'>Filters
+                    <div className='options'>
                         <Options/>
                     </div>
                     <div className='families'><FamiliesList/></div>

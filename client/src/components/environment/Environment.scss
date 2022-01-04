@@ -13,8 +13,10 @@
         grid-column-gap: 5px;
         .options{
             grid-column-start: 1;
-            width: 100%;
+            width: 80%;
             justify-content: center;
+            
+            font-family: 'Roboto Slab';
         }
         .families{
             grid-column-start: 2;

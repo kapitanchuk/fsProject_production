@@ -5,6 +5,7 @@ import Authorization from '../components/authorization/Authorization.jsx'
 import DefaultPage from '../components/defaultPage/DefaultPage.jsx'
 import Environment  from '../components/environment/Environment.jsx'
 import EnvironmentAdmin from '../components/environment/EnvironmentAdmin.jsx'
+import Show from '../components/show/Show.jsx'
 import Create from '../components/create/Create.jsx'
 
 const routes = (isAuth,isAdmin) => {
@@ -22,9 +23,8 @@ const routes = (isAuth,isAdmin) => {
         return (
             <Routes>
                 <Route path="/" element={<EnvironmentAdmin/>} />
-                <Route path="/authorization" element={<Navigate replace to="/"/>}/>
-                <Route path="/registration" element={<Navigate replace to="/"/>}/>
                 <Route path='/create' element={<Create/>}></Route>
+                <Route path="/*" element={<Navigate replace to="/"/>}/>
             </Routes>
         )
     }
@@ -32,7 +32,9 @@ const routes = (isAuth,isAdmin) => {
         return (
             <Routes>
                 <Route path="/" element={<Environment/>} />
-                <Route path="*" element={<Navigate replace to="/"/>}/>
+                
+                <Route path="/show/:id" element={<Show/>}/>
+                <Route path="/*" element={<Navigate replace to="/"/>}/>
             </Routes>
         )
     }

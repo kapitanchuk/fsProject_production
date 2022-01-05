@@ -9,7 +9,6 @@ export function registration(email, password) {
                 email,
                 password
             })
-            console.log(response)
             dispatch(SetUser(response.data.user))
             localStorage.setItem('Access_token', response.data.user.access_token)
         }
@@ -28,7 +27,6 @@ export function authorization(email, password) {
                 email,
                 password
             })
-            console.log(response.data)
             dispatch(SetUser(response.data.user))
             localStorage.setItem('Access_token', response.data.user.access_token)
         }
@@ -42,8 +40,6 @@ export function auth() {
     return async dispatch => {
         try {
             response = await $axios.get('/user/auth')
-            console.log('response from action ',response)
-            //console.log(response)
             dispatch(SetUser(response.data.user))
             
         }

@@ -26,7 +26,6 @@ $axios.interceptors.request.use(config => {
     return config
 })
 $axios.interceptors.response.use(config => {
-    console.log(config)
     return config
 }
     , err => {

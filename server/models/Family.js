@@ -7,7 +7,6 @@ const Family = mongoose.Schema({
     adress:{type:String,required:true,unique:true},
     languages:{type:[String],default:['German']},
     description:{type:String,maxLength:500},
-    registration:{type:Boolean,required:true,default:true},
     living_conditions:{type:String,maxLength:500},
     half_board:{type:Boolean,required:true},
     cost:{type:Number,required:true},

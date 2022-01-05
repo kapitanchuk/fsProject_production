@@ -5,5 +5,6 @@ const router = Router()
 
 router.post('/create',authMiddleware,familyController.create)
 router.get('/getFamilies',authMiddleware,familyController.fetchFamilies)
+router.get('/getFamily',authMiddleware,familyController.getFamily)
 
 export default router

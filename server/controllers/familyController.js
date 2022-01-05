@@ -20,6 +20,15 @@ class familyController{
             next(e)
         }
     }
+
+    async getFamily(req,res,next){
+        try {
+            const family = await familyService.getFamily(req)
+            return res.json({family})
+        } catch (e) {
+            next(e)
+        }
+    }
     
     async delete(req,res,next){
         try {

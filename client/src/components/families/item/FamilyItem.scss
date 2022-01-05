@@ -10,6 +10,10 @@
     flex-direction: row;
     font-family: 'Roboto Slab';
     box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.233);
+
+    &:hover{
+        background: rgb(244, 250, 252);
+    }
     img{
         width: 200px;
         height: 150px;

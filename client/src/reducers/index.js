@@ -4,10 +4,12 @@ import { createStore} from "redux";
 import {composeWithDevTools} from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import familyReducer from "./familyReducer.js";
+import UIreducer from "./UIreducer.js";
 
 const rootReducer = combineReducers({
     user:userReducer,
-    family:familyReducer
+    family:familyReducer,
+    UI:UIreducer
 })
 
 

@@ -50,7 +50,7 @@ class familyService {
         if(!id){
             return apiErrors.BadRequest('ID is not identified')
         }
-        const family = await Family.findOne({id})
+        const family = await Family.findOne({_id:id})
         if(!family){
             return apiErrors.BadRequest('Invalid ID')
         }

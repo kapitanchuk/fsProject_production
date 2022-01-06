@@ -10,10 +10,13 @@ const Environment = () => {
         
     // }, []) //here should be options that user is choosing (maybe)
 
+
+
     return (
         <div className='env'>
             <div className='container'>
                 <div className='env__inner'>
+                    
                     <div className='options'>
                         <Options/>
 

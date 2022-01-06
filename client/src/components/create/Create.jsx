@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import Input from '../utilits/input/Input'
 import './Create.scss'
 
@@ -15,7 +16,15 @@ const Create = () => {
     const [cost, setCost] = useState(0)
     const [free, setFree] = useState(true)
 
-   
+    const isAdmin = useSelector(state=>state.user.isAdmin)
+
+    if(!isAdmin){
+        return(
+            <div className='no_permission'>
+                <div className='title'>Sorry, but you don`t have a permission to add new families</div>
+            </div>
+        )
+    }
 
     return (
         <div className='create'>

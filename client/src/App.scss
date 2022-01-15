@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: "Roboto Slab", serif;
+}
+
+input,textarea{
+    &[type="checkbox"]{
+        border:none;
+    }
+    border:none;
+    background: transparent;
+    padding: 5px 10px;
+    font-family: "Roboto Slab", serif;
+    border: 1px solid #dde3f1;
+    border-radius:2px;
+    transition: all .15s linear;
+}
+
+input:focus,select:focus,textarea:focus{
+    outline: none;
+    border: 1px solid #66f;
+}
+
+button {
+    width: fit-content;
+    outline: none;
+    background: white;
+    border: 1px solid #dfe1e4;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 4px 15px;
+    cursor: pointer;
+    transition: all 0.12s linear;
+    border-radius: 4px;
+    &:hover {
+        background: rgb(243, 243, 243);
+    }
+    
+}

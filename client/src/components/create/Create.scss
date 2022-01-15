@@ -1,27 +1,41 @@
-@import '../scssComponents/container';
 
 .create{
-    @include container;
     &__inner{
         margin: 0 auto;
         text-align: center;
         .options{
             width: 700px;
-            background: rgba(113, 127, 190, 0.329);
-            border-radius: 10px;
-            & *{
-                margin:3px;
-            }
-
-            & :nth-child(n){
+            display: grid;
+            gap:5px;
+            div{
+                padding:5px;
                 display: grid;
-                grid-template-columns: 150px 200px;
-                & :first-child{
-                    grid-column-start: 1;
+                grid-template-columns: 1fr 2fr;
+                align-items: center;
+                justify-items: start;
+                textarea{
+                    width: 300px;
+                    height: 80px;
                 }
-                & :nth-child(2){
-                    grid-column-start: 2;
+                .members_list{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    position:relative;
+                    div{
+                        display: inherit;
+                    }
+                    .add_btn{
+                        position:absolute;
+                        top:16px;
+                        right:2%;
+                    }
+                    // .delete_btn{
+
+                    // }
                 }
+               
             }
         }
     }

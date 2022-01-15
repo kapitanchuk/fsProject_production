@@ -1,0 +1,13 @@
+input{
+    &[type="checkbox"]{
+        border:none;
+    }
+    border:none;
+    background: transparent;
+    padding: 5px 10px;
+    font-family: "Roboto Slab", serif;
+    border: 1px solid #dde3f1;
+    border-radius:2px;
+    transition: all .15s linear;
+}
+

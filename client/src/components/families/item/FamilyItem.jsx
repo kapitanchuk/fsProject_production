@@ -1,10 +1,10 @@
 import React from 'react'
 import './FamilyItem.scss'
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const FamilyItem = ({ family }) => {
     return (
-        <NavLink style={{textDecoration:'none'}}to={`/show/${family._id}`}>
+        <Link style={{textDecoration:'none'}}to={`/show/${family._id}`}>
             <div className='familyItem'>
                 {family.photos ? <img src={family.photos[0]} alt='' /> : <div></div>}
                 <div className='data'>
@@ -24,7 +24,7 @@ const FamilyItem = ({ family }) => {
                 </div>
 
             </div>
-        </NavLink>
+        </Link>
     )
 }
 

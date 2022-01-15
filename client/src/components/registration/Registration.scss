@@ -1,0 +1,61 @@
+@import '../scssComponents/container';
+
+
+.registration{
+    
+    width: 100%;
+    height: calc(100vh - 50px);
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
+    
+}
+
+.registration__inner{
+    position:absolute;
+    top:40%;
+    left:50%;
+    transform: translate3d(-50%,-40%,0);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:300px;
+    padding:25px 0;
+    background: white;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border: 1px solid #eceef3;
+    border-top: 4px solid #66f;
+    border-radius: 8px;
+    
+    input{
+        transition: all .15s linear;
+        &:focus{
+            border:none;
+            outline: none;
+            border: 1px solid #66f;
+        }
+       
+    }
+
+    button{
+        
+        outline:none;
+        background: white;
+        border:1px solid #eceef3;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 4px 15px;
+        cursor:pointer;
+        transition: all .12s linear;
+        border-radius: 2px;
+        &:hover{
+            background: #fafafa;
+        }
+    }
+}
+
+.registration__inner *{
+    margin:5px 0;
+}

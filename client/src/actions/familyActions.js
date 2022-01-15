@@ -4,7 +4,7 @@ import { GetFamilies, SetCurrFamily } from "../reducers/familyReducer";
 export const getFamilies=(options)=>{
     return async dispatch=>{
         try {
-            const response = await $axios.get(`/family/getFamilies${options? `?options=true&min=${options.min}&max=${options.max}&half_board=${options.half_b}&free=${options.free}`:''}`)
+            const response = await $axios.get(`/family/getFamilies${options? `?options=true&min=${options.range[0]}&max=${options.range[1]}&half_board=${options.half_b}&free=${options.free}`:''}`)
             dispatch(GetFamilies(response.data))
         } catch (e) {
             console.log(e.response.data.message)

@@ -1,0 +1,14 @@
+@import '../scssComponents/container';
+
+.default{
+    @include container;
+    text-align: center;
+    
+    .title{
+        font-family: 'Roboto Slab', serif;
+        font-size: 25px;
+    }
+
+
+
+}

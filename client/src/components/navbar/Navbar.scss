@@ -1,0 +1,69 @@
+$main-color: rgba(128, 127, 127, 0.726);
+$navbar-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.103);
+$border-color: #eceef3;
+
+.navbar {
+    width: 100%;
+    // background: linear-gradient(180deg, rgba(108,108,108,1) 7%, rgba(255,255,255,1) 99%);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: $navbar-shadow;
+    background-color: #fff;
+    border-bottom: 1px solid $border-color;
+    font-family: "Roboto Slab", serif;
+    z-index: 10;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding:0 30px
+}
+
+.navbar__logo {
+    font-size: 30px;
+}
+
+.navbar__links {
+    display: flex;
+    align-items: center;
+    padding-right: 45px;
+
+    
+}
+
+.navbar * {
+    color: $main-color;
+    text-decoration: none;
+}
+
+.navbar__authorization {
+    a:hover{
+        color:#66f;
+    }
+    margin-right: 20px;
+    transition: all 0.2s linear;
+}
+
+.navbar__registration {
+    a:hover{
+        color:#66f;
+    }
+    
+    transition: all 0.2s linear;
+}
+
+.navbar__account {
+    cursor: pointer;
+    position: relative;
+    div:hover{
+        color:#66f;
+    }
+}
+
+
+

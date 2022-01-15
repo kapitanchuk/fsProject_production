@@ -6,16 +6,20 @@ import DefaultPage from '../components/defaultPage/DefaultPage.jsx'
 import Environment from '../components/environment/Environment.jsx'
 import Show from '../components/show/Show.jsx'
 import Create from '../components/create/Create.jsx'
+import Profile from '../components/profile/Profile.jsx'
+import EditProfile from '../components/profile/profileComponents/EditProfile.jsx'
+import Activate from '../components/profile/profileComponents/Activate.jsx'
+import Settings from '../components/profile/profileComponents/Settings.jsx'
+import Main from '../components/profile/profileComponents/Main.jsx'
 
-const routes = (isAuth, isAdmin) => {
+const routes = (isAuth) => {
     if (!isAuth) {
         return (
             <Routes>
+                <Route path="/" element={<DefaultPage />} />
                 <Route path="/authorization" element={<Authorization />} />
                 <Route path="/registration" element={<Registration />} />
-                <Route path="/*" element={<Navigate replace to="/" />} />
-                <Route path="/" element={<DefaultPage />} />
-
+                <Route path="/logout" element={<Navigate replace to="/" />} />
             </Routes>
         )
     }
@@ -23,9 +27,18 @@ const routes = (isAuth, isAdmin) => {
         return (
             <Routes>
                 <Route path="/" element={<Environment />} />
-                <Route path="/create" element={<Create/>}></Route>
                 <Route path="/show/:id" element={<Show />} />
-                <Route path="/*" element={<Navigate replace to="/" />} />
+                <Route path="/profile/" element={<Profile/>}>
+                    {/* should be main page of user's profile */}
+                    <Route index  element={<Main/>}></Route>
+                    <Route path="edit" element={<EditProfile/>}></Route>
+                    <Route path="activate" element={<Activate/>}></Route>
+                    <Route path="create" element={<Create/>}></Route>
+                    <Route path="settings" element={<Settings/>}></Route>
+                    
+                </Route>
+                <Route path="/authorization" element={<Navigate replace to="/" />} />
+                <Route path="/registration" element={<Navigate replace to="/" />} />
             </Routes>
         )
     }

@@ -1,5 +1,5 @@
 import React from 'react'
-import './Authorization.css'
+import './Authorization.scss'
 import { useState } from 'react'
 import Input from '../utilits/input/Input.jsx'
 import { useDispatch } from 'react-redux'

@@ -2,21 +2,19 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Input from '../utilits/input/Input'
 import './Create.scss'
+import MembersList from './membersList/MembersList'
 
 const Create = () => {
 
-    const [member, setMember] = useState('')
     const [contacts, setContacts] = useState('')
     const [adress, setAdress] = useState('')
-    const [language, setLanguage] = useState('')
     const [desc, setDesc] = useState('')
-    const [regist, setRegis] = useState(false)
     const [living, setLiving] = useState('')
     const [eating, setEating] = useState(false)
     const [cost, setCost] = useState(0)
     const [free, setFree] = useState(true)
 
-    const isAdmin = useSelector(state=>state.user.isAdmin)
+    const isAdmin = useSelector(state=>state.user.currentUser.admin)
 
     if(!isAdmin){
         return(
@@ -33,8 +31,8 @@ const Create = () => {
                     <h2>Add new family:</h2>
                     <div className='options'>
                         <div className='members'>
-                            <div className='title'>Members of family:</div>
-                            <Input value={member} placeholder="member" type="text" onChange={e => setMember(e.target.value)} />
+                            <div className='title'>Family members:</div>
+                            <MembersList/>
                         </div>
                         <div className='contacts'>
                             <div className='title'>Contacts:</div>
@@ -46,19 +44,14 @@ const Create = () => {
                             <Input value={adress} placeholder="adress" type="text" onChange={e => setAdress(e.target.value)} />
 
                         </div>
-                        <div className=''>
+                        {/* <div className=''>
                             <div className='title'>Languages:</div>
-                            <Input value={language} placeholder="contacts" type="text" onChange={e => setLanguage(e.target.value)} />
+                            <Input value={language} placeholder="languages" type="text" onChange={e => setLanguage(e.target.value)} />
 
-                        </div>
+                        </div> */}
                         <div className=''>
                             <div className='title'>Description:</div>
                             <textarea placeholder="Description" value={desc} onChange={e => setDesc(e.target.value)} cols="40" rows="5"></textarea>
-
-                        </div>
-                        <div className=''>
-                            <div className='title'>Registration:</div>
-                            <Input type="checkbox" value={regist} onChange={e => setRegis(e.target.value)}></Input>
 
                         </div>
                         <div className=''>

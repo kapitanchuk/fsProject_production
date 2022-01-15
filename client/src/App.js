@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { auth } from './actions/userActions.js'
-import Footer from './components/Footer/Footer.jsx'
 
 const App = () => {
 

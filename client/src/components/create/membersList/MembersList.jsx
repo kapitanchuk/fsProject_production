@@ -42,7 +42,7 @@ const MembersList = () => {
 
                 <div key={item.id}>
                     <div><input placeholder ="member" value={item.value} onChange={(e)=>handleChange(e,index)}></input></div>
-                    <button className="delete_btn" onClick={()=>handleRemove(item.id)}>remove one</button>
+                    <button className="delete_btn" onClick={()=>handleRemove(item.id)}>remove</button>
                 </div>
             ))}
         </div>

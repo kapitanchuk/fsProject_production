@@ -20,6 +20,7 @@ app.use(cors({
     credentials:true,
     origin:process.env.CLIENT_URL
 }))
+app.use('/public',express.static('public'))
 app.use('/api/user',userRoutes)
 app.use('/api/family',familyRoutes)
 app.use(errorsMiddleware)//если были ошибки, middleware принимает их после роутов

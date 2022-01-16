@@ -14,5 +14,6 @@ router.get('/logout',userController.logout)
 router.get('/refresh',userController.refresh)
 router.get('/getUsers',authMiddleware,userController.getAll)
 router.get('/auth',authMiddleware,userController.auth)
+router.put('/update',authMiddleware,userController.update)
 
 export default router

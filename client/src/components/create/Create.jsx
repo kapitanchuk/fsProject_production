@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { addFamily } from '../../http(axios)/addFamily'
 import Input from '../utilits/input/Input'
 import './Create.scss'
 import MembersList from './membersList/MembersList'
+import PhotosArea from './photosArea/PhotosArea'
 
 const Create = () => {
 
@@ -14,15 +16,40 @@ const Create = () => {
     const [cost, setCost] = useState(0)
     const [free, setFree] = useState(true)
 
-    const isAdmin = useSelector(state=>state.user.currentUser.admin)
+    const [ready,setReady] = useState(false)
+    const members = useSelector(state => state.UI.members)
+    const photos = useSelector(state=>state.UI.photos)
+    const isAdmin = useSelector(state => state.user.currentUser.admin)
 
-    if(!isAdmin){
-        return(
+    const options = {contacts,adress,desc,living,eating,cost,free}
+
+    useEffect(()=>{
+
+        let counter=0
+        members.map(item=>{
+            if(item.value){
+                counter++
+            }
+        })
+
+
+        if(contacts&&adress&&desc&&living&&cost&&counter===members.length){
+            setReady(true)
+        }
+        else{
+            setReady(false)
+        }
+    },[options])
+
+    if (!isAdmin) {
+        return (
             <div className='no_permission'>
                 <div className='title'>Sorry, but you don`t have a permission to add new families</div>
             </div>
         )
     }
+
+
 
     return (
         <div className='create'>
@@ -30,9 +57,14 @@ const Create = () => {
                 <div className='create__inner'>
                     <h2>Add new family:</h2>
                     <div className='options'>
+                        <div className='photos'>
+                            <div className='title'>Photos:</div>
+                            <PhotosArea/>
+
+                        </div>
                         <div className='members'>
                             <div className='title'>Family members:</div>
-                            <MembersList/>
+                            <MembersList />
                         </div>
                         <div className='contacts'>
                             <div className='title'>Contacts:</div>
@@ -61,7 +93,7 @@ const Create = () => {
                         </div>
                         <div className=''>
                             <div className='title'>Eating</div>
-                            <Input type="checkbox" value={eating} onChange={e => setEating(e.target.value)}></Input>
+                            <Input type="checkbox" checked={eating} onChange={e => setEating(e.target.checked)}></Input>
 
                         </div>
                         <div className=''>
@@ -71,12 +103,12 @@ const Create = () => {
                         </div>
                         <div className=''>
                             <div className='title'>Free</div>
-                            <Input type="checkbox" value={free} onChange={e => setFree(e.target.value)}></Input>
+                            <Input type="checkbox" checked={free} onChange={e => setFree(e.target.checked)}></Input>
 
                         </div>
                     </div>
 
-                    <button onClick={() => {}}>Create</button>
+                    <button className="create_btn" disabled={!ready} onClick={addFamily(members, contacts, adress, desc, living, eating, cost, free,photos)}>Create</button>
                 </div>
             </div>
         </div>

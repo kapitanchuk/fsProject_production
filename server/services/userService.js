@@ -12,7 +12,7 @@ class userService {
             throw apiErrors.BadRequest('erros during registration',errors)
         }
 
-        const { email, password } = req.body
+        const { email, password,name,lastName } = req.body
         const candidate = await User.findOne({ email })
         if (candidate) {
             throw apiErrors.BadRequest('user with this email already exists')
@@ -21,7 +21,7 @@ class userService {
         }
 
         const hashedPassword = bcrypt.hashSync(password, 6)
-        const user = new User({ email: email, password: hashedPassword })
+        const user = new User({ email: email, password: hashedPassword,firstName:name,lastName:lastName })
         const tokens = await tokenService.createTokens(user._id)
         tokenService.saveRefresh(user._id,tokens.refresh_token)
 
@@ -49,6 +49,16 @@ class userService {
             ...tokens,
             user:user
         }
+    }
+
+    async update(req){
+        const {firstName,lastName,gender} = req.body;
+        const user = await User.findOne({_id:req.user.payload})
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.gender = gender;
+        user.save()
+        return user
     }
 
     async getUsers(){

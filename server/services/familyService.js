@@ -3,15 +3,38 @@ import Family from "../models/Family.js"
 
 class familyService {
     async create(req) {
-        const { members, contacts, adress, languages, description, living_conditions, half_board, cost, free, photos } = req.body
+        // console.log(req)
+        const { members, contacts, adress, description, living_conditions, half_board, cost, free } = req.body
         const candidate = await Family.findOne({ adress: adress })
         if (candidate) {
             throw apiErrors.BadRequest('family with this adress already registered')
         }
 
-        const family = new Family({ modifier: req.user.payload, members, contacts, adress, languages, description, living_conditions, half_board, cost, free, photos })
-        family.save()
+        let fileNamesArray=[]
+        if(req.files){
+            const url = req.protocol + '://' + req.get('host')
+            fileNamesArray = req.files.map(file=>url+'/public/'+file.filename)
+        }
+        
+        
+
+        const family = new Family({
+            modifier: req.user.payload,
+            members: members,
+            contacts: contacts,
+            adress: adress,
+            description: description,
+            living_conditions: living_conditions,
+            half_board: half_board,
+            cost: cost,
+            free: free,
+            photos: fileNamesArray
+        })
+        console.log("FAMILY", family)
+        await family.save()
         return family
+
+
     }
 
     async getFamilies(req) {
@@ -28,11 +51,11 @@ class familyService {
 
         let families
         if (options) {
-            families = await Family.find({half_board: half_board })
+            families = await Family.find({ half_board: half_board })
             if (free) {
                 families = families.filter(item => item.free === JSON.parse(free))
             }
-            families = families.filter(item => item.cost > min && item.cost < max)
+            families = families.filter(item => item.cost >= min && item.cost <= max)
 
 
             // families = families.filter(family=>{return family.languages.includes('German')})
@@ -45,14 +68,14 @@ class familyService {
         return families
     }
 
-    async getFamily(req){
+    async getFamily(req) {
         const id = req.query.id
-        if(!id){
-            return apiErrors.BadRequest('ID is not identified')
+        if (!id) {
+            throw apiErrors.BadRequest('ID is not identified')
         }
-        const family = await Family.findOne({_id:id})
-        if(!family){
-            return apiErrors.BadRequest('Invalid ID')
+        const family = await Family.findOne({ _id: id })
+        if (!family) {
+            throw apiErrors.BadRequest('Invalid ID')
         }
         return family
     }

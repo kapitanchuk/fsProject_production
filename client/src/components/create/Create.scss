@@ -1,41 +1,64 @@
-
-.create{
-    &__inner{
+.create {
+    &__inner {
         margin: 0 auto;
         text-align: center;
-        .options{
+        .options {
             width: 700px;
             display: grid;
-            gap:5px;
-            div{
-                padding:5px;
+            gap: 5px;
+            div {
+                padding: 5px;
                 display: grid;
                 grid-template-columns: 1fr 2fr;
                 align-items: center;
                 justify-items: start;
-                textarea{
+                textarea {
                     width: 300px;
                     height: 80px;
                 }
-                .members_list{
+                .members_list {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
-                    position:relative;
-                    div{
+                    position: relative;
+                    div {
                         display: inherit;
                     }
-                    .add_btn{
-                        position:absolute;
-                        top:16px;
-                        right:2%;
+                    .add_btn {
+                        position: absolute;
+                        top: 16px;
+                        right: 2%;
                     }
                     // .delete_btn{
 
                     // }
                 }
-               
+
+                .photos_area {
+                    width: 100%;
+                    display: block;
+                    .input_file{
+                        width: 100%;
+                        
+                    }
+                    border: 1px dashed black;
+                    img{
+                        width:100px;
+                        height: 100px;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+
+        button {
+            &[disabled] {
+                color: rgb(170, 170, 170);
+                cursor: auto;
+                &:hover {
+                    background: white;
+                }
             }
         }
     }

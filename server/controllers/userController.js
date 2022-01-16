@@ -51,10 +51,18 @@ class userController {
         try {
             
             const { Refresh_token } = req.cookies
-            console.log("TOKEN FROM LOGOUT ",Refresh_token)
             await tokenService.deleteRefresh(Refresh_token)
             res.clearCookie('Refresh_token')
             return res.json('done')
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async update(req,res,next){
+        try {
+            const user = await userService.update(req)
+            return res.json({user})
         } catch (e) {
             next(e)
         }

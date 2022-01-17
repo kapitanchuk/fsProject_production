@@ -26,7 +26,7 @@
         display: flex;
         justify-content: center;
         padding: 0;
-        .css-187mznn-MuiSlider-root{
+        .css-187mznn-MuiSlider-root {
             padding: 0;
         }
     }
@@ -39,6 +39,11 @@
         input {
             width: 60px;
             padding: 2 5px;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
     }
 

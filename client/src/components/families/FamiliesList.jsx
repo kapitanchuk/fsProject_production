@@ -5,7 +5,7 @@ import './FamiliesList.scss'
 
 const FamiliesList = () => {
 
-    const families = useSelector(state=>state.family.families.families)
+    const families = useSelector(state=>state.family.families)
 
     if(!families||!families.length){
         return <h1>Families are not found</h1>

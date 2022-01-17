@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './MySlider.scss'
 
 export default function MySlider({photos}){
-    console.log(photos)
+    
     var settings = {
         dots: true,
         infinite: true,

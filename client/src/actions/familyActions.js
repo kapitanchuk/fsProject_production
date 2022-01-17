@@ -1,13 +1,17 @@
 import { $axios } from "../http(axios)";
-import { GetFamilies, SetCurrFamily } from "../reducers/familyReducer";
+import { GetFamilies, SetCurrFamily, SetTotalCount } from "../reducers/familyReducer";
 
-export const getFamilies=(options)=>{
+export const getFamilies=(options,paginationOptions)=>{
     return async dispatch=>{
         try {
-            const response = await $axios.get(`/family/getFamilies${options? `?options=true&min=${options.range[0]}&max=${options.range[1]}&half_board=${options.half_b}&free=${options.free}`:''}`)
-            dispatch(GetFamilies(response.data))
+            
+            const response = await $axios.get(`/family/getFamilies${options? `?options=true&min=${options.range[0]}&max=${options.range[1]}&half_board=${options.half_b}&free=${options.free}&currPage=${paginationOptions.currPage}&limit=${paginationOptions.limit}`:`?currPage=${paginationOptions.currPage}&limit=${paginationOptions.limit}`}`)
+            console.log(response.data)
+            dispatch(GetFamilies(response.data.families))
+            dispatch(SetTotalCount(response.data.totalNumber))
         } catch (e) {
-            console.log(e.response.data.message)
+            console.error(e)
+            // console.log(e?.response?.data.message)
             
         }
       

@@ -14,7 +14,7 @@ class familyController{
     async fetchFamilies(req,res,next){
         try{
             const families = await familyService.getFamilies(req)
-            return res.json({families})
+            return res.json(families)
         }
         catch(e){
             next(e)

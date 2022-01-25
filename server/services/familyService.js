@@ -41,37 +41,31 @@ class familyService {
     async getFamilies(req) {
 
         //maybe it would be better to set post request and get all options by req.body
-        let { options, min, max, half_board, free, currPage, limit } = req.query
-        // const options = req.query.options
-        // const min = req.query.min
-        // const max = req.query.max
-        // const half_board = req.query.half_board
-        // let free = req.query.free
-        // const currPage = req.query.currPage
-        // const limit = req.query.limit
+        let { options, min, max, half_board,free ,currPage, limit } = req.query
+
 
         let currItem = (currPage - 1) * limit;
 
         let totalNumber
-
-
         let families
         if (options) {
-            
-            if (free === 'true') {
-                free = JSON.parse(free)
-                // console.log('if true',free)
-            }
-            families = await Family.find({ half_board: half_board, free: free, cost: { $gte: min, $lte: max } }).sort({_id:1}).skip(currItem).limit(parseInt(limit))
-            totalNumber = await Family.find({ half_board: half_board, free: free, cost: { $gte: min, $lte: max } }).count()
 
-            // families = families.filter(family=>{return family.languages.includes('German')})
+            free = JSON.parse(free)
+            half_board=JSON.parse(half_board)
+            
+            //figure out later how aggregate works  
+            families = await Family.aggregate([
+                {$match:{$expr:{$cond:{if:free,then:{$eq:["$free",true]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:half_board,then:{$eq:["$half_board",true]},else:{}}}}},
+                {$match:{cost:{ $gte: parseInt(min), $lte:parseInt(max)}}}
+            ])
+            totalNumber=1;
+            
 
         }
         else {
             families = await Family.find().sort({ _id: 1 }).skip(currItem).limit(parseInt(limit))
             totalNumber = await Family.find().count()
-
         }
 
         // console.log(families)

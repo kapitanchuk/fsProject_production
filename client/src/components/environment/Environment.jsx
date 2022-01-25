@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import './Environment.scss'
 import FamiliesList from '../families/FamiliesList'
 import Options from '../options/Options'
@@ -15,6 +15,12 @@ const Environment = () => {
     //     dispatch(getFamilies())
 
     // }, []) //here should be options that user is choosing (maybe)
+    // useEffect(() => {
+    //     navigator.geolocation.getCurrentPosition(({coords:{latitude,longitude}})=>{
+    //         console.log('currPosition:',latitude,longitude)
+    //     })
+
+    // }, [])
 
     const displayPageButtons = () => {
         const buttons = []

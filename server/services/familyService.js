@@ -57,9 +57,19 @@ class familyService {
             families = await Family.aggregate([
                 {$match:{$expr:{$cond:{if:free,then:{$eq:["$free",true]},else:{}}}}},
                 {$match:{$expr:{$cond:{if:half_board,then:{$eq:["$half_board",true]},else:{}}}}},
-                {$match:{cost:{ $gte: parseInt(min), $lte:parseInt(max)}}}
+                {$match:{cost:{ $gte: parseInt(min), $lte:parseInt(max)}}},
+                {$skip:currItem},
+                {$limit:parseInt(limit)}
             ])
-            totalNumber=1;
+            totalNumber = await Family.aggregate([
+                {$match:{$expr:{$cond:{if:free,then:{$eq:["$free",true]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:half_board,then:{$eq:["$half_board",true]},else:{}}}}},
+                {$match:{cost:{ $gte: parseInt(min), $lte:parseInt(max)}}},
+                
+            ]).count("count");
+            
+            totalNumber=totalNumber[0].count;
+            
             
 
         }

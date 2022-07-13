@@ -2,14 +2,25 @@ import mongoose from 'mongoose'
 
 const Family = mongoose.Schema({
     modifier:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true},
-    members:[{type:String,required:true}],
-    contacts:{type:String,required:true},
+    district:{type:String,required:true},
+    property_type:{type:String,required:true},
+    accomodation_type:{type:String,required:true},
+    contacts:{type:String},
     adress:{type:String,required:true,unique:true},
-    languages:{type:[String],default:['German']},
+    registration:{type:Boolean,required:true},
+    conditions:{
+        wifi:{type:Boolean,required:true,default:false},
+        separate_bath:{type:Boolean,required:true,default:false},
+        food:{type:Boolean,required:true,default:false},
+        pets:{type:Boolean,required:true,default:false},
+        kitchen:{type:Boolean,required:true,default:false},
+    },
     description:{type:String,maxLength:500},
-    living_conditions:{type:String,maxLength:500},
-    half_board:{type:Boolean,required:true},
-    cost:{type:Number,required:true},
+    other:{type:String,maxLength:200},
+    cost:{
+        cost_without_food:{type:String,required:true},
+        cost_with_food:{type:String,required:true}
+    },
     free:{type:mongoose.Schema.Types.Mixed,default:true},
     photos:[{type:String}]
 })

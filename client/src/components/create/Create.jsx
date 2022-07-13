@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { addFamily } from '../../http(axios)/addFamily'
+// import { addFamily } from '../../http(axios)/addFamily'
 import Input from '../utilits/input/Input'
 import './Create.scss'
 import MembersList from './membersList/MembersList'
-import PhotosArea from './photosArea/PhotosArea'
+// import PhotosArea from './photosArea/PhotosArea'
 
 const Create = () => {
 
@@ -59,7 +59,7 @@ const Create = () => {
                     <div className='options'>
                         <div className='photos'>
                             <div className='title'>Photos:</div>
-                            <PhotosArea/>
+                            {/* <PhotosArea/> */}
 
                         </div>
                         <div className='members'>
@@ -108,7 +108,7 @@ const Create = () => {
                         </div>
                     </div>
 
-                    <button className="create_btn" disabled={!ready} onClick={addFamily(members, contacts, adress, desc, living, eating, cost, free,photos)}>Create</button>
+                    {/* <button className="create_btn" disabled={!ready} onClick={addFamily(members, contacts, adress, desc, living, eating, cost, free,photos)}>Create</button> */}
                 </div>
             </div>
         </div>

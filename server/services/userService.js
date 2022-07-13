@@ -34,7 +34,8 @@ class userService {
 
     async authorize(req){
         const {email,password} = req.body
-        const user = await User.findOne({email:email})
+        const user = await User.findOne({email})
+        console.log(user)
         if(!user){
             throw apiErrors.BadRequest('invalid email');
         }
@@ -77,4 +78,4 @@ class userService {
     }
 }
 
-export default new userService() // вызывая new мы точно знаем, что будет создан новый объект
+export default new userService()

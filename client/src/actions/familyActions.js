@@ -4,7 +4,7 @@ import { GetFamilies, SetCurrFamily, SetTotalCount } from "../reducers/familyRed
 export const getFamilies=(options,paginationOptions)=>{
     return async dispatch=>{
         try {
-            const response = await $axios.get(`/family/getFamilies${options? `?options=true&min=${options.range[0]}&max=${options.range[1]}&half_board=${options.half_b}&free=${options.free}&currPage=${paginationOptions.currPage}&limit=${paginationOptions.limit}`:`?currPage=${paginationOptions.currPage}&limit=${paginationOptions.limit}`}`)
+            const response = await $axios.get(`/family/getFamilies${options? `?options=true&min=${options.range[0]}&max=${options.range[1]}&free=${options.free}&currPage=${paginationOptions.currPage}&limit=${paginationOptions.limit}`:`?currPage=${paginationOptions.currPage}&limit=${paginationOptions.limit}`}`)
             // let correctOptions={}
             // for(const option of options){
             //     if(option!==false){

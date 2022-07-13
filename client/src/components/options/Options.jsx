@@ -47,20 +47,24 @@ const Options = () => {
     useEffect(() => {
         clearTimeout(searchTimeout)
         const options = {
-            range, half_b, free
+            range, free
         }
         const paginationOptions = {
             currPage: currPage, limit: limit
         }
-
-        if (!half_b && !free && range[0] === 0 && range[1] === 1000) {
-            dispatch(getFamilies(null, paginationOptions))
+        if (range[0] === '' || range[1] === '') {
+            setRange([0,1000]);
         }
-        else if (range[0] === '' || range[1] === '') {
-            return
+        else if (!half_b && !free && range[0] === 0 && range[1] === 1000) {
+            setSearchTimeout(() => setTimeout(() => {
+                
+                dispatch(getFamilies(null, paginationOptions))
+            }, 300))
+            
         }
         else {
             setSearchTimeout(() => setTimeout((value) => {
+                
                 if (prevfree !== free || prevhalf_b !== half_b || prevRange !== range) {
                     console.log('prev State (free, half, range):', prevfree, prevhalf_b, prevRange)
                     dispatch(SetCurrPage(1));

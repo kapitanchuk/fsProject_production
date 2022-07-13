@@ -37,11 +37,11 @@ export function authorization(email, password) {
         }
     }
 }
-let response
+
 export function auth() {
     return async dispatch => {
         try {
-            response = await $axios.get('/user/auth')
+            let response = await $axios.get('/user/auth')
             dispatch(SetUser(response.data.user))
             
         }

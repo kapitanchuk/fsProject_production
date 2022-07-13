@@ -31,26 +31,19 @@ const Show = () => {
                     <MySlider photos={family.photos} />
                 </div>
                 <div className='main-info'>
-                    <div className='members'>
-                        <div className='title title-show'>Members:</div>
-                        <ul>
-                            {family.members.map(member => <li key={member} className='member'>{member}</li>)}
-
-                        </ul>
-                    </div>
                     <div className='descriptions'>
                         <div className='title title-show'>Description:</div>
                         {family.description}
                     </div>
-                    <div className="living_conditions">
+                    {/* make ul here */}
+                    {/* <div className="living_conditions">
                         <div className='title title-show'>Conditions that are provided:</div>
-                        {family.living_conditions}
-                    </div>
-                    <div className='adress'>
+                        {family.conditions.wifi}
+                    </div> */}
+                    {/* <div className='adress'>
                         <div className='title title-show'>Location: </div>
                         {family.adress}
-
-                    </div>
+                    </div> */}
                     <div className='map'>
                         {/* <GoogleMapReact
                             

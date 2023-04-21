@@ -9,65 +9,76 @@ class familyService {
         //REDO THAT STUFF
 
 
-        // let { members, contacts, adress, description, living_conditions, half_board, cost, free } = req.body
-        // const candidate = await Family.findOne({ adress: adress })
-        // if (candidate) {
-        //     throw apiErrors.BadRequest('family with this adress already registered')
-        // }
+        let { members, contacts, adress, description, living_conditions, half_board, cost, free } = req.body
+        const candidate = await Family.findOne({ adress: adress })
+        if (candidate) {
+            throw apiErrors.BadRequest('family with this adress already registered')
+        }
 
-        // let fileNamesArray = []
-        // if (req.files) {
-        //     const url = req.protocol + '://' + req.get('host')
-        //     fileNamesArray = req.files.map(file => url + '/public/' + file.filename)
-        // }
+        let fileNamesArray = []
+        if (req.files) {
+            const url = req.protocol + '://' + req.get('host')
+            fileNamesArray = req.files.map(file => url + '/public/' + file.filename)
+        }
 
-        // if (free === "true") {
-        //     free = JSON.parse(free)
-        // }
-        // const family = new Family({
-        //     modifier: req.user.payload,
-        //     members: members,
-        //     contacts: contacts,
-        //     adress: adress,
-        //     description: description,
-        //     living_conditions: living_conditions,
-        //     half_board: half_board,
-        //     cost: cost,
-        //     free: free,
-        //     photos: fileNamesArray
-        // })
-        // console.log("FAMILY", family)
-        // await family.save()
-        // return family
+        if (free === "true") {
+            free = JSON.parse(free)
+        }
+        const family = new Family({
+            modifier: req.user.payload,
+            members: members,
+            contacts: contacts,
+            adress: adress,
+            description: description,
+            living_conditions: living_conditions,
+            cost: cost,
+            free: free,
+            photos: fileNamesArray
+        })
+        console.log("FAMILY", family)
+        await family.save()
+        return family
 
     }
 
     async getFamilies(req) {
 
-        //maybe it would be better to set post request and get all options by req.body
-        let { options, min, max, free ,currPage, limit } = req.query
+        let { options,paginationOptions} = req.body
 
 
-        let currItem = (currPage - 1) * limit;
+        let currItem = (paginationOptions.currPage - 1) * paginationOptions.limit;
 
         let totalNumber
         let families
         if (options) {
-
-            free = JSON.parse(free)
-            
-            //figure out later how aggregate works  
+ 
             families = await Family.aggregate([
-                {$match:{$expr:{$cond:{if:free,then:{$eq:["$free",true]},else:{}}}}},
-                // {$match:{$expr:{$cond:{if:half_board,then:{$eq:["$half_board",true]},else:{}}}}},
-                {$match:{"cost.cost_without_food":{ $gte: parseInt(min), $lte:parseInt(max)}}},
+                {$match:{$expr:{$cond:{if:options.free,then:{$eq:["$free",true]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.conditions.wifi,then:{$eq:["$conditions.wifi",true]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.conditions.separate_bath,then:{$eq:["$conditions.separate_bath",true]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.conditions.pets,then:{$eq:["$conditions.pets",false]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.conditions.kitchen,then:{$eq:["$conditions.kitchen",true]},else:{}}}}},
+
+                {$match:{$expr:{$cond:{if:options.conditions.food.half_board,then:{$eq:["$conditions.food.half_board",true]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.conditions.food.only_breakfast,then:{$or:[{$eq:["$conditions.food.only_breakfast",true]},{$eq:["$conditions.food.half_board",true]}]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.registration,then:{$eq:["$registration",true]},else:{}}}}},
+                {$match:{"cost.cost_without_food":{ $gte: parseInt(options.range[0]), $lte:parseInt(options.range[1])}}},
+                {$sort:{"cost.cost_without_food":1,_id:1}},
                 {$skip:currItem},
-                {$limit:parseInt(limit)}
+                {$limit:parseInt(paginationOptions.limit)}
             ])
             totalNumber = await Family.aggregate([
-                {$match:{$expr:{$cond:{if:free,then:{$eq:["$free",true]},else:{}}}}},
-                // {$match:{$expr:{$cond:{if:half_board,then:{$eq:["$half_board",true]},else:{}}}}},
-                {$match:{"cost.cost_without_food":{ $gte: parseInt(min), $lte:parseInt(max)}}},
+                {$match:{$expr:{$cond:{if:options.free,then:{$eq:["$free",true]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.conditions.wifi,then:{$eq:["$conditions.wifi",true]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.conditions.separate_bath,then:{$eq:["$conditions.separate_bath",true]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.conditions.pets,then:{$eq:["$conditions.pets",false]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.conditions.kitchen,then:{$eq:["$conditions.kitchen",true]},else:{}}}}},
+
+                {$match:{$expr:{$cond:{if:options.conditions.food.half_board,then:{$eq:["$conditions.food.half_board",true]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.conditions.food.only_breakfast,then:{$or:[{$eq:["$conditions.food.only_breakfast",true]},{$eq:["$conditions.food.half_board",true]}]},else:{}}}}},
+                {$match:{$expr:{$cond:{if:options.registration,then:{$eq:["$registration",true]},else:{}}}}},
+                {$match:{"cost.cost_without_food":{ $gte: parseInt(options.range[0]), $lte:parseInt(options.range[1])}}},
+                {$sort:{"cost.cost_without_food":1,_id:1}},
                 
             ]).count("count");
             
@@ -76,7 +87,7 @@ class familyService {
         
         }
         else {
-            families = await Family.find().sort({ _id: 1 }).skip(currItem).limit(parseInt(limit))
+            families = await Family.find().sort({ "cost.cost_without_food":1,_id: 1 }).skip(paginationOptions.currItem).limit(parseInt(paginationOptions.limit))
             totalNumber = await Family.find().count()
         }
 

@@ -70,8 +70,6 @@ class tokenService {
         
     }
 
-
-
 }
 
 export default new tokenService()

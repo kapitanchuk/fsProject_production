@@ -10,7 +10,7 @@ const Show = () => {
 
     const params = useParams()
 
-    const [family, setFamily] = useState({})
+const [family, setFamily] = useState({})
 
     useEffect(() => {
         // eslint-disable-line react-hooks/exhaustive-deps

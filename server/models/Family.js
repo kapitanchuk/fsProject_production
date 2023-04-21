@@ -11,12 +11,16 @@ const Family = mongoose.Schema({
     conditions:{
         wifi:{type:Boolean,required:true,default:false},
         separate_bath:{type:Boolean,required:true,default:false},
-        food:{type:Boolean,required:true,default:false},
+        food:{
+            half_board:{type:Boolean},
+            only_breakfast:{type:Boolean},
+            no_nutrition_provided:{type:Boolean,required:true,default:true}
+        },
         pets:{type:Boolean,required:true,default:false},
         kitchen:{type:Boolean,required:true,default:false},
     },
     description:{type:String,maxLength:500},
-    other:{type:String,maxLength:200},
+    other:{type:String,maxLength:500},
     cost:{
         cost_without_food:{type:String,required:true},
         cost_with_food:{type:String,required:true}

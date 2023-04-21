@@ -1,6 +1,6 @@
 import { $api,$axios } from '../http(axios)/index.js'
 import { Logout, SetUser } from '../reducers/userReducer.js'
-import { change_half,change_free } from '../reducers/optionsReducer.js'
+
 
 export function registration(email, password,name,lastName) {
     return async dispatch => {
@@ -79,8 +79,8 @@ export function logout() {
         try {
             await $axios.get('/user/logout')
             localStorage.removeItem('Access_token')
-            dispatch(change_free(false))
-            dispatch(change_half(false))
+            // dispatch(change_free(false))
+            // dispatch(change_half(false))
             // dispatch(set_min(10))
             // dispatch(set_max(1000))
             dispatch(Logout())

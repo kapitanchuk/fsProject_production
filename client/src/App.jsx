@@ -19,7 +19,6 @@ const App = () => {
     },[])//when page is first rendered 
 
 
-
     return (
 
         <Router>

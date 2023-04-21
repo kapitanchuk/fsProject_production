@@ -22,26 +22,54 @@
     }
     .data{
         margin-left: 10px;
-        .languages{
-            display: flex;
-            .language{
-                display: flex;
-                flex-direction: row;
-                margin: 0 3px;
-            }
+        position:relative;
+        width: 100%;
+        .title{
+            font-size: 18px;
         }
-        .description{
-            font-size: 10px;
+        .properties{
+            margin: 5px 0 0 20px;
+            font-size: 12px;
+            li{
+                list-style-type: circle;
+            }
         }
        .living{
            font-size: 10px;
        }
-       .free{
-           color:rgba(106, 209, 152, 0.74);
+       .freeProperty{
+        position:absolute;
+        bottom:15%;
+        .free{
+            color:rgba(106, 209, 152, 0.74);
+        }
+        .free_after{
+             color:rgba(206, 185, 89, 0.808)
+        }
        }
-       .free_after{
-            color:rgba(206, 185, 89, 0.808)
+
+       .costs{
+        position:absolute;
+        top:0;
+        right:5%;
+        &_container{
+            display: flex;
+            justify-content: flex-end;
+        }
+        &_type{
+            
+            color:rgba(128, 127, 127, 0.726);
+            font-size: 10px;
+            align-self: flex-end;
+            padding-bottom: 2px;
+            margin-right: 3px;
+        }
+        &_number{
+            font:bold;
+        }
+        
        }
+       
     }
     
 }

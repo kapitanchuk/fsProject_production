@@ -5,7 +5,7 @@ import { Logout, SetUser } from '../reducers/userReducer.js'
 export function registration(email, password,name,lastName) {
     return async dispatch => {
         try {
-            const response = await $api.post(`/user/registration`, {
+            const response = await $axios.post(`/user/registration`, {
                 email,
                 password,
                 name,
@@ -25,7 +25,7 @@ export function registration(email, password,name,lastName) {
 export function authorization(email, password) {
     return async dispatch => {
         try {
-            const response = await $api.post(`/user/authorization`, {
+            const response = await $axios.post(`/user/authorization`, {
                 email,
                 password
             })

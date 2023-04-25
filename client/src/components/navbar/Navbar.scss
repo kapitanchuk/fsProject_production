@@ -5,7 +5,7 @@ $border-color: #eceef3;
 .navbar {
     width: 100%;
     // background: linear-gradient(180deg, rgba(108,108,108,1) 7%, rgba(255,255,255,1) 99%);
-    height: 50px;
+    min-height: 50px;
     display: flex;
     align-items: center;
     box-shadow: $navbar-shadow;

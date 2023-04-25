@@ -35,7 +35,7 @@ const Environment = () => {
 
     return (
         <div className='env'>
-            <div className='container'>
+            <div className='env__container'>
                 <div className='env__inner'>
 
                     <div className='options'>

@@ -1,10 +1,11 @@
 import axios from 'axios'
 
+//https://family-search-axioma.onrender.com/
 
 //custom instance defaults
 //will be applied to every request
 export const $axios = axios.create({
-    baseURL: "http://localhost:4000/api",
+    baseURL: "https://family-search-axioma.onrender.com/api",
     withCredentials: true //in order to be able to attach cookies to every request
 })
 

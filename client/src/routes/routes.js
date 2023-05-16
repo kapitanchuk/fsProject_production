@@ -20,6 +20,7 @@ const routes = (isAuth) => {
                 <Route path="/authorisation" element={<Authorisation />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/logout" element={<Navigate replace to="/" />} />
+                <Route path ="*" element={<Navigate replate to=""/>}></Route>
             </Routes>
         )
     }
@@ -36,9 +37,11 @@ const routes = (isAuth) => {
                     <Route path="create" element={<Create/>}></Route>
                     <Route path="settings" element={<Settings/>}></Route>
                     
+                    
                 </Route>
                 <Route path="/authorisation" element={<Navigate replace to="/" />} />
                 <Route path="/registration" element={<Navigate replace to="/" />} />
+                <Route path ="*" element={<Navigate replate to=""/>}></Route>
             </Routes>
         )
     }

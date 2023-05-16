@@ -1,4 +1,5 @@
-import { $api,$axios } from '../http(axios)/index.js'
+import { $axios } from '../http(axios)/index.js'
+import { SetRegistrationError } from '../reducers/UIreducer.js'
 import { Logout, SetUser } from '../reducers/userReducer.js'
 
 
@@ -16,16 +17,19 @@ export function registration(email, password,name,lastName) {
         }
         catch (e) {
             console.log(e.response.data)
-            return alert(e.response.data.message)
+            const errors = e.response.data.errors.errors;
+            errors.map(error=>dispatch(SetRegistrationError(error.param,true,error.msg)))
+            
+            // return alert(e.response.data.message)
         }
 
     }
 }
 
-export function authorization(email, password) {
+export function authorisation(email, password) {
     return async dispatch => {
         try {
-            const response = await $axios.post(`/user/authorization`, {
+            const response = await $axios.post(`/user/authorisation`, {
                 email,
                 password
             })

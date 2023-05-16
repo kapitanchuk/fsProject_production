@@ -1,8 +1,9 @@
 
 export default class apiErrors{
 
-    constructor(status,message,originalReq,errors = []){//те элементы, что мы принимаем
+    constructor(status,message,errors = [],originalReq){//те элементы, что мы принимаем
         //super(message)// сообщение из родительского класа(Error)
+        
         this.originalReq = originalReq
         this.message = message
         this.errors = errors
@@ -10,12 +11,10 @@ export default class apiErrors{
     }
 
     static unAuthorized(originalReq){
-       return new apiErrors(401,'unauthorized',originalReq) 
+       return new apiErrors(401,'unauthorized','',originalReq) 
     }
 
-
     static BadRequest(message,errors=[]){
-
         return new apiErrors(400,message,errors)
     }
 

@@ -8,8 +8,8 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { auth } from './actions/userActions.js'
 
-const App = () => {
 
+const App = () => {
     const dispatch = useDispatch()
     const isAuth = useSelector((state) => state.user.isAuth)
     const isAdmin = useSelector(state=>state.user.currentUser.admin)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import Registration from '../components/registration/Registration.jsx'
-import Authorization from '../components/authorization/Authorization.jsx'
+import Authorisation from '../components/authorisation/Authorisation.jsx'
 import DefaultPage from '../components/defaultPage/DefaultPage.jsx'
 import Environment from '../components/environment/Environment.jsx'
 import Show from '../components/show/Show.jsx'
@@ -17,7 +17,7 @@ const routes = (isAuth) => {
         return (
             <Routes>
                 <Route path="/" element={<DefaultPage />} />
-                <Route path="/authorization" element={<Authorization />} />
+                <Route path="/authorisation" element={<Authorisation />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/logout" element={<Navigate replace to="/" />} />
             </Routes>
@@ -37,7 +37,7 @@ const routes = (isAuth) => {
                     <Route path="settings" element={<Settings/>}></Route>
                     
                 </Route>
-                <Route path="/authorization" element={<Navigate replace to="/" />} />
+                <Route path="/authorisation" element={<Navigate replace to="/" />} />
                 <Route path="/registration" element={<Navigate replace to="/" />} />
             </Routes>
         )

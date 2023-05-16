@@ -12,11 +12,80 @@
         grid-template-columns: 0.7fr 3fr;
         justify-items: center;
         grid-column-gap: 15px;
+        
         .options{
             grid-column-start: 1;
-            width:100%;
+            // width:100%;
             
             font-family: 'Roboto Slab';
+            // .option_animation{
+                &-primary-enter{
+                    opacity:0;
+                    transform:translateX(-100%);
+                }
+                &-primary-enter-active {
+                    opacity: 1;
+                    transform:translateX(0%);
+                    transition: all 300ms ease-out;
+                }
+                &-primary-exit {
+                    opacity: 1;
+                }
+                &-primary-exit-active {
+                    opacity: 0;
+                    transform:translateX(-100%);
+                    transition: all 300ms ease;
+                }
+            // }
+            &-mobile{
+                position: fixed;
+                left:0;
+                top:50px;
+                right:60%;
+                min-width: 220px;
+                // background:rgba(0, 0, 0, 0.3);
+                background:rgba(94, 129, 144, 0.414);
+                border-bottom-right-radius: 10px;
+                border-right: 3px solid rgb(142, 174, 189,0.5);
+                border-bottom: 3px solid rgb(142, 174, 189,0.5);
+                backdrop-filter: blur(10px);
+                z-index: 80;
+                @media (min-width:781px) {
+                    display: none;
+                    
+                }
+            }
+        }
+        
+        .sidebar__outer-animation-enter{
+            opacity:0;
+        }
+        .sidebar__outer-animation-enter-active {
+            opacity: 1;
+            
+            transition: all 200ms ease-out;
+        }
+        .sidebar__outer-animation-exit {
+            opacity: 1;
+        }
+        .sidebar__outer-animation-exit-active {
+            opacity: 0;
+            transition: all 200ms ease;
+        }
+        .sidebar__outer{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            z-index:70;
+            background-color: rgba(0, 0, 0, 0.3);
+            
+        }
+
+        @media (max-width:780px) {
+            display: block;
+            
         }
         .families{
             grid-column-start: 2;

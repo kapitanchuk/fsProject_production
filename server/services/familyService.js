@@ -9,7 +9,7 @@ class familyService {
         //REDO THAT STUFF
 
 
-        let { members, contacts, adress, description, living_conditions, half_board, cost, free } = req.body
+        let { members, district ,property_, adress, description, living_conditions, half_board, cost, free } = req.body
         const candidate = await Family.findOne({ adress: adress })
         if (candidate) {
             throw apiErrors.BadRequest('family with this adress already registered')
@@ -87,7 +87,7 @@ class familyService {
         
         }
         else {
-            families = await Family.find().sort({ "cost.cost_without_food":1,_id: 1 }).skip(paginationOptions.currItem).limit(parseInt(paginationOptions.limit))
+            families = await Family.find().sort({ "cost.cost_without_food":1,_id: 1 }).skip(currItem).limit(parseInt(paginationOptions.limit))
             totalNumber = await Family.find().count()
         }
 

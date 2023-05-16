@@ -37,7 +37,7 @@ class userService {
         const user = await User.findOne({email})
         console.log(user)
         if(!user){
-            throw apiErrors.BadRequest('invalid email');
+            throw apiErrors.BadRequest('user with this email does not exist');
         }
         
         if(!bcrypt.compareSync(password,user.password)){

@@ -9,7 +9,7 @@ const defaultState={
     currFamily:{},
     totalNumber:0,
     currPage:1,
-    limit:3
+    limit:6
     
 }
 

@@ -1,11 +1,11 @@
 import React from 'react'
-import './Authorization.scss'
+import './Authorisation.scss'
 import { useState } from 'react'
 import Input from '../utilits/input/Input.jsx'
 import { useDispatch } from 'react-redux'
-import { authorization } from '../../actions/userActions'
+import { authorisation } from '../../actions/userActions'
 
-const Authorization = () => {
+const Authorisation = () => {
 
     const dispatch = useDispatch()
     const [email, setEmail] = useState('')
@@ -20,15 +20,15 @@ const Authorization = () => {
 
     const handleKey = event => {
         if (event.code === 'Enter') {
-            return dispatch(authorization(email,password))
+            return dispatch(authorisation(email,password))
         }
     }
 
 
     return (
-        <div className="authorization">
-            <div className="authorization__inner">
-                <h1>Authorization</h1>
+        <div className="authorisation">
+            <div className="authorisation__inner">
+                <h1>Authorisation</h1>
                 <Input
                     type="text"
                     placeholder="email"
@@ -43,7 +43,7 @@ const Authorization = () => {
                     onKeyDown={handleKey}
                 />
 
-                <button onClick={()=>{dispatch(authorization(email,password))}}>Send</button>
+                <button onClick={()=>{dispatch(authorisation(email,password))}}>Send</button>
 
             </div>
 
@@ -51,4 +51,4 @@ const Authorization = () => {
     )
 }
 
-export default Authorization
+export default Authorisation

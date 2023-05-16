@@ -6,10 +6,10 @@ import { authMiddleware } from "../middlewares/auth-middleware.js";
 const router = new Router()
 
 router.post('/registration',[
-    check('email','invalid email').isEmail(),
-    check('password','4 or more characters').isLength({min:4})
+    check('email','Input a valid email address').isEmail(),
+    check('password','Password must be longer than 4 characters').isLength({min:4})
 ],userController.registration)
-router.post('/authorization',userController.authorization)
+router.post('/authorisation',userController.authorisation)
 router.get('/logout',userController.logout)
 router.get('/refresh',userController.refresh)
 router.get('/getUsers',authMiddleware,userController.getAll)

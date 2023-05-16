@@ -1,9 +1,21 @@
-$main-color: rgba(128, 127, 127, 0.726);
+$main-color: rgba(128, 127, 127, 0.703);
 $navbar-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.103);
 $border-color: #eceef3;
 
+
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
 .navbar {
+    
+
+
+
     width: 100%;
+    position:sticky;
+    top:0;
     // background: linear-gradient(180deg, rgba(108,108,108,1) 7%, rgba(255,255,255,1) 99%);
     min-height: 50px;
     display: flex;
@@ -12,7 +24,59 @@ $border-color: #eceef3;
     background-color: #fff;
     border-bottom: 1px solid $border-color;
     font-family: "Roboto Slab", serif;
-    z-index: 10;
+    z-index: 100;
+
+    
+
+
+    &__optionsMenu{
+        --bar-width:30px;
+        --bar-height:4px;
+        --hamburger-gap:4px;
+        --hamburger-height:calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+        --x-width:calc(var(--hamburger-height)*1.41421356237);
+        
+        display: flex;
+        cursor:pointer;
+        flex-direction: column;
+        justify-content: center;
+        gap:var(--hamburger-gap);
+
+        &::before,
+        &::after,
+        &_btn{
+            content:"";
+            width:var(--bar-width);
+            height:var(--bar-height);
+            background-color: $main-color;
+            border-radius: 6px;
+            transform-origin: left;
+            transition: all 200ms ease-in-out;
+        }
+        
+        &.sidebar_opened{
+            .navbar__optionsMenu_btn{
+                opacity:0;
+                width:0;
+            }
+            &::before{
+                rotate: 45deg; 
+                // translate: 0 var(--bar-height)/-2;
+                translate: 0 calc(var(--bar-height)/-2);
+                width:var(--x-width);
+            }
+            &::after{
+                rotate: -45deg;
+                width:var(--x-width);
+                translate: 0 calc(var(--bar-height)/2);
+                
+            }
+            
+            
+            
+        }
+    }
+    
 }
 
 .container {
@@ -21,19 +85,43 @@ $border-color: #eceef3;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding:0 30px
+    align-items: center;
+    padding:0 30px;
+
 }
 
 .navbar__logo {
-    font-size: 30px;
+    font-weight: 500;
+    font-size: clamp(20px,10px + 2vw, 30px);
+    color:#eceef3;
+    // &::before{
+    //     content:"Axioma Sprachbörse"
+    // }
+    &_pc{
+        display:inline;
+    }
+    &_mobile{
+        display: none;
+    }
+    @media (max-width:600px) {
+        // &::before{
+        //     content: "Axioma";
+        // }
+        &_pc{
+            display: none;
+        }
+        &_mobile{
+            display: inline;
+        }
+    }
 }
+
+
 
 .navbar__links {
     display: flex;
     align-items: center;
-    padding-right: 45px;
-
-    
+    position:relative; 
 }
 
 .navbar * {
@@ -41,12 +129,11 @@ $border-color: #eceef3;
     text-decoration: none;
 }
 
-.navbar__authorization {
+.navbar__authorisation {
     a:hover{
         color:#66f;
     }
-    margin-right: 20px;
-    transition: all 0.2s linear;
+    margin-right: clamp(5px,2vw,20px);
 }
 
 .navbar__registration {
@@ -54,14 +141,51 @@ $border-color: #eceef3;
         color:#66f;
     }
     
-    transition: all 0.2s linear;
+    border:2px solid rgba(102, 102, 255, 0.197);;
+    border-radius: 6px;
+    padding:5px;
+      
 }
 
 .navbar__account {
     cursor: pointer;
     position: relative;
+    display: flex;
+    align-items: center;
     div:hover{
         color:#66f;
+    }
+
+    svg{
+        fill:gray ;
+        width:30px;
+        height:30px;
+
+    }
+}
+
+.profile-popup__outer{
+    position:fixed;
+    top:50px;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:60;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    transition:all 0.25s ease-in-out;
+    &-enter{
+        opacity:0;
+    }
+    &-enter-active{
+        opacity: 1;
+    }
+    &-exit{
+        opacity:1;
+    }
+    &-exit-active{
+        opacity:0;
+        transition: all 0.2s ease-in-out;    
     }
 }
 

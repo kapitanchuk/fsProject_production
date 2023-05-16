@@ -4,12 +4,13 @@
     border-radius: 3px;
     border: 1px solid rgb(142, 174, 189);
     width: 100%;
-    padding: 20px;
-    margin-bottom: 10px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     font-family: 'Roboto Slab';
     box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.233);
+    gap:10px;
+    
 
     &:hover{
         background: rgb(244, 250, 252);
@@ -21,11 +22,16 @@
         object-fit: cover;
     }
     .data{
-        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        
         position:relative;
         width: 100%;
+
+        
         .title{
             font-size: 18px;
+            font-weight: 500;
         }
         .properties{
             margin: 5px 0 0 20px;
@@ -37,9 +43,18 @@
        .living{
            font-size: 10px;
        }
+
+       .free-costs_container{
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin:auto 0;
+        }
+
+
        .freeProperty{
-        position:absolute;
-        bottom:15%;
+        
         .free{
             color:rgba(106, 209, 152, 0.74);
         }
@@ -49,9 +64,6 @@
        }
 
        .costs{
-        position:absolute;
-        top:0;
-        right:5%;
         &_container{
             display: flex;
             justify-content: flex-end;
@@ -72,4 +84,130 @@
        
     }
     
+}
+
+
+
+.familyItem-mobile{
+    border-radius: 3px;
+    border: 1px solid rgb(142, 174, 189);
+    width: 100%;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    font-family: 'Roboto Slab';
+    box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.233);
+    height:100%;
+
+    .square-container{
+        width:100%;
+        position:relative;
+        img{
+            position:absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 7px;
+            object-fit: cover;
+            object-position: center;
+        }
+        &::after{
+            content:'';
+            display: block;
+            padding-top:90%;
+        }
+    }
+
+    &:hover{
+        background: rgb(244, 250, 252);
+    }
+    
+    .data{
+        overflow:hidden;
+        height:100%;
+        // white-space:nowrap;
+        text-overflow: ellipsis;
+        display: flex;
+        flex-direction: column;
+        // display: grid;
+        // grid-template-columns: repeat(1,minmax(0,1fr) max-content);
+        // grid-template-rows: repeat(2,minmax(0,1fr) max-content);
+        
+        // padding-left: 10px;
+        // position:relative;
+        // width: 100%;
+        
+        .title{
+            grid-row: 1;
+            font-size: 18px;
+        }
+        .properties{
+            grid-row: 2;
+            margin: 5px 0 0 20px;
+            font-size: 12px;
+            
+            
+            li{
+                list-style-type: circle;
+            }
+        }
+       .living{
+           font-size: 10px;
+       }
+
+       
+       .freeProperty{
+        grid-row:3;
+            .free{
+                color:rgba(106, 209, 152, 0.74);
+            }
+            .free_after{
+                color:rgba(206, 185, 89, 0.808)
+            }
+       }
+
+       .free-costs_container{
+            margin-top:auto;
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+       .costs{
+        margin-left: auto;
+        grid-column: -2/auto;
+        grid-row:3;
+
+        &_container{
+            display: flex;
+            
+            justify-content: flex-end;
+            
+        }
+
+
+        &_type{
+            
+            color:rgba(128, 127, 127, 0.726);
+            font-size: 10px;
+            align-self: flex-end;
+            padding-bottom: 2px;
+            margin-right: 3px;
+        }
+        &_number{
+            font:bold;
+        }
+        
+       }
+       
+    }
+}
+
+
+@media (max-width:600px) {
+    .familyItem{
+        display: none;
+    }
+    .familyItem-mobile{
+        display: flex;
+    }
 }

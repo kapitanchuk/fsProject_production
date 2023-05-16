@@ -32,7 +32,6 @@ const Create = () => {
             }
         })
 
-
         if(contacts&&adress&&desc&&living&&cost&&counter===members.length){
             setReady(true)
         }

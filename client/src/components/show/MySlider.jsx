@@ -17,7 +17,7 @@ export default function MySlider({photos}){
       };
     return(
         <Slider {...settings}>
-            {photos.map(photo=><img className='photo' key={photo} src={photo}></img>)}
+            {photos.map(photo=><img className='photo' key={photo} src={photo} alt="image"></img>)}
         </Slider>
     )
 }

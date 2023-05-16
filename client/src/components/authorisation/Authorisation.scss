@@ -1,21 +1,17 @@
 @import '../scssComponents/container';
 
-.authorization{
+.authorisation{
     
-    width: 100%;
-    height: calc(100vh - 50px);
+    @include container;
+    
     // display: flex;
     // justify-content: center;
     // align-items: center;
-
     
 }
 
-.authorization__inner{
-    position:absolute;
-    top:40%;
-    left:50%;
-    transform: translate3d(-50%,-40%,0);
+.authorisation__inner{
+    margin:clamp(30px,30px + 20vh,200px) auto;
     
     display: flex;
     flex-direction: column;
@@ -46,6 +42,6 @@
     }
 }
 
-.authorization__inner *{
+.authorisation__inner *{
     margin: 5px 0;
 }

@@ -10,7 +10,7 @@ export const authMiddleware =(req,res,next)=>{
         const {originalUrl,method,body} = req
         originalReq = {originalUrl,method,body}
         // console.log('originalReq:',originalReq)
-        const token = req.headers.authorization.split(' ')[1]//taking access_token from header
+        const token = req.headers.authorisation.split(' ')[1]//taking access_token from header
         const decoded = tokenService.checkAccessToken(token);
         req.user = decoded
     

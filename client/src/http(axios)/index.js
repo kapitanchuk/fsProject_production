@@ -5,20 +5,15 @@ import axios from 'axios'
 //custom instance defaults
 //will be applied to every request
 export const $axios = axios.create({
-    baseURL: "https://family-search-axioma.onrender.com/api",
+    baseURL: process.env.REACT_APP_API_URL,
     withCredentials: true //in order to be able to attach cookies to every request
 })
 
 $axios.interceptors.request.use(config => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('Access_token')}`
+    config.headers.Authorisation = `Bearer ${localStorage.getItem('Access_token')}`
     return config
 })
 
-
-$axios.interceptors.request.use(config => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('Access_token')}`
-    return config
-})
 
 let originalReq = null
 

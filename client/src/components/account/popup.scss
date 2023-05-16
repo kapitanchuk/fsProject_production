@@ -4,20 +4,45 @@ $navbar-dropdown-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     position:absolute;
     cursor:auto;
     top:185%;
-    right:-63%;
+    right:-20px;
     width: 200px;
     background: rgb(255, 255, 255);
     border:1px solid #dbdce0;
     border-radius: 6px;
     box-shadow: $navbar-dropdown-shadow;
-    z-index: 1;
     // opacity: 0;
-    animation: animation .3s ease-out;
+    // animation: animation .3s ease-out;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     font-weight: 600;
+    z-index: 80;
+
+    transition: all 0.25s ease-in-out;
+
+    // CSSTransition styles
+    &-enter{
+        opacity:0;
+        transform: translate(0,-50%);
+    }
+    &-enter-active{
+        opacity: 1;
+        transform: translate(0%);
+    }
+    &-exit{
+        opacity:1;
+    }
+    &-exit-active{
+        opacity:0;
+        transform: translate(0,-50%);
+        transition: all 0.2s ease-in-out;
+        
+    }
+
+    // CSSTransition styles
+
+
     button{
         position: absolute;
         top:3%;
@@ -70,10 +95,5 @@ $navbar-dropdown-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     // .profile_options a:hover{
     //     color:white
     // }
-}
-
-@keyframes animation{
-    0%{opacity: 0;transform: translateY(-100px);}
-    100%{opacity: 100%;transform: translateY(0)}
 }
 

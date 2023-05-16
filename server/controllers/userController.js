@@ -17,7 +17,7 @@ class userController {
         }
     }
 
-    async authorization(req, res, next) {
+    async authorisation(req, res, next) {
         try {
             //использование токена:
             // access token храниться на клиентской части приложения

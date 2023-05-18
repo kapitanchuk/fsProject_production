@@ -9,8 +9,15 @@ class userController {
         try {
             const user = await userService.regist(req)
 
-            res.cookie('Refresh_token', user.refresh_token, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true })
-            
+            res.cookie('Refresh_token', user.refresh_token, {
+                maxAge: 1000 * 60 * 60 * 24 * 30,
+                sameSite: "none",
+                secure: true,
+                // domain: process.env.CLIENT_URL.split("//")[1],
+                domain:"localhost",
+                httpOnly: true
+            })
+
             return res.json({ user })
         } catch (e) {
             next(e)
@@ -26,10 +33,17 @@ class userController {
             // если данные были изменены, значит также полностью поменялась подпись, из этого мы делаем вывод, что была проведена подмена.
 
             // но access token могут украсть, поетому его время жизни должно быть небольшим и чтобы создавать новый токен доступа  используем refresh token
-            
-            const user = await userService.authorize(req)
 
-            res.cookie('Refresh_token', user.refresh_token, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true })
+            const user = await userService.authorize(req)
+            
+            res.cookie('Refresh_token', user.refresh_token, {
+                maxAge: 1000 * 60 * 60 * 24 * 30,
+                sameSite: "none",
+                secure: true,
+                domain: process.env.NODE_ENV === "production" ? process.env.CLIENT_URL.split("//")[1]: "localhost",
+                httpOnly: true
+            })
+
 
             return res.json({ user })
 
@@ -38,10 +52,10 @@ class userController {
         }
     }
 
-    async getAll(req,res,next){
+    async getAll(req, res, next) {
         try {
             const users = await userService.getUsers()
-            return res.json({users})
+            return res.json({ users })
         } catch (e) {
             next(e)
         }
@@ -49,7 +63,7 @@ class userController {
 
     async logout(req, res, next) {
         try {
-            
+
             const { Refresh_token } = req.cookies
             await tokenService.deleteRefresh(Refresh_token)
             res.clearCookie('Refresh_token')
@@ -59,10 +73,10 @@ class userController {
         }
     }
 
-    async update(req,res,next){
+    async update(req, res, next) {
         try {
             const user = await userService.update(req)
-            return res.json({user})
+            return res.json({ user })
         } catch (e) {
             next(e)
         }
@@ -73,19 +87,19 @@ class userController {
             const { Refresh_token } = req.cookies
             const tokens = await tokenService.refreshTokens(Refresh_token)
             res.cookie('Refresh_token', tokens.tokens.refresh_token, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true })
-            return res.json({tokens})
+            return res.json({ tokens })
         } catch (e) {
             next(e)
         }
     }
 
-    async auth(req,res,next){
-        try{
+    async auth(req, res, next) {
+        try {
             const user = await userService.findUser(req.user);
 
-            return res.json({user});
+            return res.json({ user });
         }
-        catch(e){
+        catch (e) {
             next(e)
         }
     }

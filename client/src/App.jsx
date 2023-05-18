@@ -23,7 +23,6 @@ const App = () => {
 
         <Router>
             <Navbar />
-            {console.log(process.env.REACT_APP_API_URL)}
             {routes(isAuth,isAdmin)}
             {/* <Footer/> */}
         </Router>

@@ -6,7 +6,6 @@ import axios from 'axios'
 //will be applied to every request
 export const $axios = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
-    // baseURL:"https://family-search-axioma.onrender.com/api",
     withCredentials: true //in order to be able to attach cookies to every request
 })
 

@@ -59,13 +59,13 @@ class tokenService {
 
     checkRefeshToken(refreshToken) {
         if (!refreshToken) {
-            throw apiErrors.InvalidToken('invalid token')
+            throw apiErrors.InvalidToken('Refresh token isnt provided')
         }
         try {
             const decoded = jwt.verify(refreshToken, process.env.SECRET_REFRESH)
             return decoded
         } catch (e) {
-            throw apiErrors.InvalidToken('invalid token')
+            throw apiErrors.InvalidToken('Refresh token failed verification')
         }
         
     }

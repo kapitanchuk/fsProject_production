@@ -82,6 +82,7 @@ export function logout() {
     return async dispatch => {
         try {
             await $axios.get('/user/logout')
+            console.log("after removing")
             localStorage.removeItem('Access_token')
             // dispatch(change_free(false))
             // dispatch(change_half(false))
